@@ -6,6 +6,5 @@ RUN curl -O http://www.onexsoft.com/software/oneproxy-rhel6-linux64-v6.2.0-ga.ta
 
 EXPOSE 3306
 
-VOLUME ["/usr/local/oneproxy/conf/proxy.conf"]
 
 CMD ["/usr/local/oneproxy/run.sh"]
