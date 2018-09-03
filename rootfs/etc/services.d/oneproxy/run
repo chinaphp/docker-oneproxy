@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# export ONEPROXY_HOME=/data/oneproxy
+# # ulimit -c unlimited
+
+# # valgrind --leak-check=full \
+# # exec ${ONEPROXY_HOME}/bin/oneproxy --defaults-file=${ONEPROXY_HOME}/conf/proxy.conf
+
+# /data/oneproxy/bin/oneproxy  /data/oneproxy/conf/proxy.conf
+/data/oneproxy/oneproxy.service start &
+tail -f /data/oneproxy/log/oneproxy.log

@@ -1,0 +1,87 @@
+OneProxy for MySQL
+====================================================
+
+OneProxy is a comerical MySQL protocol based database proxy for connection pool,
+load balancer (including fast failover and read/write split), big table sharding,
+and SQL firewalls. It also gathers the SQL performance metrics for applications,
+including which SQL is top executed or slowest, which client send most queries etc.
+
+You can visit http://www.onexsoft.com:8080 to take a  tour of SQL performance of
+WordPress application, the web site of our company.
+
+
+License
+====================================================
+OneProxy is a comerical software, all rights are reserved. The software will be
+full featured unless you have a valid license code offered by us, otherwise
+some features will be disalbed automatically after a given period. We will provide
+official online technique support once you buy the license.
+
+
+Online Documents:
+====================================================
+English http://www.onexsoft.com/en/oneproxy.html
+Chinese http://www.onexsoft.com/zh/oneproxy.html
+
+
+Contact US:
+====================================================
+Mail: flou@onexsoft.com
+Home: http://www.onexsoft.com
+
+Change Log:
+====================================================
+
+version 6.1.0 
+2017.06.15 -- Add query cache (result cache) 
+2017.06.14 -- Add proxy_uuid column to meta tables
+           -- Add meta tables for sharding templates & tables
+2017.06.10 -- Add basic html auth for web interface
+2017.06.09 -- Add "load config" command in admin interface
+           -- Add "save config" command in admin interface (for sqltext & client ips)
+2017.06.08 -- Add "proxy-user-local" for non global database users
+           -- Add dedicate error log writer thread
+           -- Add load config (backens, instances, groups) from mysql database
+
+version 6.0.2
+2017.06.06 -- Add sqlstats for each backend
+2017.06.03 -- Add "min_idle_conn" option for minimum connection pool size
+           -- Add "max_idle_conn" opiton for maximum connection pool size
+2017.06.02 -- Change ping sql from "select" to "show variables" to avoid TCC control
+           -- Add "high_session" option for slave high load protection
+           -- Add "network_timeout" option for backend ping timeout
+2017.06.01 -- Fix crash bug for monitor page (iptransdebug)
+2017.05.25 -- Add long transaction audit feature
+           -- Log the transaction for abnormal connection lost
+2017.05.22 -- Auto choose the master when auto_readonly is on
+2017.05.16 -- Fix crash issue when execute empty queries
+2017.05.06 -- Set socket_file to "/tmp/oneproxy.sock" by default.
+2017.05.05 -- Reserver the quote char ('"`) when rewriting queries.
+
+version 6.0.1
+2017.05.05 -- Write the process stack trace to log file when ternimate abnormally.
+           -- Replace pipe with EV_TIMEOUT for thread event loop
+           -- Abort the program with exit(-3) when any work thread terminate.
+2017.05.04 -- Improve the load balance policy of slave query requests, more evenly.
+2017.05.03 -- Fix assert error in parallel read result (CON_STATE_PARALLEL_READ_RESULT)
+           -- Force query with "/*slave*/" hint to read from non-master node always
+           -- Add "proxy-force-rowlimit" option to deny queries without limit clause
+           -- Add "proxy-skip-network" option to disable work port during startup
+2017.04.25 -- Add "proxy-ignore-readonly" to ignore read only transaction of spring framework
+           -- Add "suppend force & resume" command in admin interface to disalbe working port temporary
+2017.04.14 -- Print the client address for abnormal connection close in debug log
+2017.04.13 -- Fix bug of lose transaction check for non partitioned DML operations.
+           -- Add "proxy-loose-transaction" to enable cross server group DML operations.
+           -- Set default value of "proxy-log-sqlerror" to on by default.
+2017.04.12 -- Skip the transaction flag for global table's DML operation.
+           -- Select jemalloc 4.0.4 and gperftool 2.5.0 as the default memorry allocator.
+2017.04.09 -- Add "lazy-master" option to force queries in lazy transaction to run on master node.
+           -- Replace long double with decNumber for better data precision (fix for long double precision lost)
+2017.04.08 -- Make lazy transaction mode valid for non-sharding queries.
+           -- Add "suggest_master" option to support read slave for master only query.
+
+version 6.0.0
+2017.04.01 -- Initialized from oneproxy 6.0.0
+
+
+Thanks.
