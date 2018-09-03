@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 #
 export ONEPROXY_HOME=/usr/local/oneproxy
 ulimit -c unlimited
