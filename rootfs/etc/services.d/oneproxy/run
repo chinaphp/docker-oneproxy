@@ -1,11 +1,19 @@
 #!/bin/bash
 #
 # export ONEPROXY_HOME=/data/oneproxy
-# # ulimit -c unlimited
+# ulimit -c unlimited
 
 # # valgrind --leak-check=full \
 # # exec ${ONEPROXY_HOME}/bin/oneproxy --defaults-file=${ONEPROXY_HOME}/conf/proxy.conf
 
 # /data/oneproxy/bin/oneproxy  /data/oneproxy/conf/proxy.conf
+
+set -e
+
+sed -i "s|proxy-master-addresses.2   = db2:3306@default|proxy-master-addresses.2   = $DB1@default|g" /data/oneproxy/conf/proxy.conf
+
+sed -i "s|proxy-part-|# proxy-part-|g" /data/oneproxy/conf/proxy.conf
+
+
 /data/oneproxy/oneproxy.service start &
 tail -f /data/oneproxy/log/oneproxy.log

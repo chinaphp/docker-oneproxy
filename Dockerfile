@@ -1,8 +1,9 @@
-# TAGS 7.4.1708
+# TAGS 6.2.0
 FROM project42/s6-centos:latest
 
 LABEL maintainer "Coffee <chinaphper@qq.com>"
 
+ENV DB1 192.168.31.246:3306
 
 RUN set -ex \ 
     && yum install -y initscripts \
@@ -19,23 +20,19 @@ RUN set -ex \
                       wget \
                     #   xz \
     && yum clean all \
-    && mkdir -p /data 
- #   && curl -O http://www.onexsoft.com/software/oneproxy-rhel6-linux64-v6.2.0-ga.tar.gz \
- #   && tar zxf oneproxy-rhel6-linux64-v6.2.0-ga.tar.gz -C /data \
- #   && sed -i 's|#/bin/bash|#!/bin/bash|g' /data/oneproxy/demo.sh \
- #   && chmod +x /data/oneproxy/demo.sh
-
-# RUN wget https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz -O /tmp/s6-overlay-amd64.tar.gz \
-#     && tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" \
-#     && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin \
-#     && rm -f /tmp/s6-overlay-amd64.tar.gz
-
-# COPY rootfs /
+    && rm -rf /var/cache/yum \
+    && mkdir -p /data \
+   && curl -O http://www.onexsoft.com/software/oneproxy-rhel6-linux64-v6.2.0-ga.tar.gz \
+   && tar zxf oneproxy-rhel6-linux64-v6.2.0-ga.tar.gz -C /data \
+   && sed -i "s|proxy-master-addresses.2   = db2:3306@default|proxy-master-addresses.2   = $DB1@default|g" /data/oneproxy/conf/proxy.conf
+  #  && sed -i 's|#/bin/bash|#!/bin/bash|g' /data/oneproxy/demo.sh \
+  #  && chmod +x /data/oneproxy/demo.sh
 
 ADD rootfs/etc/services.d/oneproxy etc/services.d/oneproxy
-ADD oneproxy /data/oneproxy
 
-#ADD proxy.conf /data/oneproxy/conf/proxy.conf
+#COPY proxy.conf /data/oneproxy/conf/proxy.conf
+
+# VOLUME [ "/data/oneproxy/conf/proxy.conf" ]
 
 WORKDIR /data/oneproxy
 
