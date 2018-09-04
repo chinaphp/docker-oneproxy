@@ -32,8 +32,6 @@ ADD rootfs/etc/services.d/oneproxy etc/services.d/oneproxy
 
 #COPY proxy.conf /data/oneproxy/conf/proxy.conf
 
-# VOLUME [ "/data/oneproxy/conf/proxy.conf" ]
-
 WORKDIR /data/oneproxy
 
 ENV PROXYUSERLIST=default:test/1378F6CC3A8E8A43CA388193FBED5405982FBBD3@test

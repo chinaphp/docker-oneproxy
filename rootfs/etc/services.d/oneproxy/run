@@ -8,13 +8,13 @@
 
 # /data/oneproxy/bin/oneproxy  /data/oneproxy/conf/proxy.conf
 
-set -e
+# set -e
 
-sed -i "s|proxy-master-addresses.2   = db2:3306@default|proxy-master-addresses.2   = $DB1@default|g" /data/oneproxy/conf/proxy.conf
+# sed -i "s|proxy-master-addresses.2   = db2:3306@default|proxy-master-addresses.2   = $DB1@default|g" /data/oneproxy/conf/proxy.conf
 
-sed -i "s|proxy-part-|# proxy-part-|g" /data/oneproxy/conf/proxy.conf
+# sed -i "s|proxy-part-|# proxy-part-|g" /data/oneproxy/conf/proxy.conf
 
-sed -i "/proxy-user-list/c\ $PROXYUSERLIST" /data/oneproxy/conf/proxy.conf
+# sed -i "/proxy-user-list/c\ $PROXYUSERLIST" /data/oneproxy/conf/proxy.conf
 
 
 /data/oneproxy/oneproxy.service start &
